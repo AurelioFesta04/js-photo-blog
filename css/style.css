@@ -27,7 +27,7 @@ img {
 .cont {
     padding: 8%;
     width: 100wv;
-    height: 85vh;
+    height: 100%;
     background-image: url(../assets_day1/img/cork.png);
 }
 
