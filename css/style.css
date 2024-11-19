@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    object-fit: contain;
+}
+
+.title {
+    width: 100vw;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../assets_day1/img/wall.png);
+}
+
+.estate {
+    font-family: "Edu TAS Beginner", cursive;
+    font-size: 3.5rem;
+}
+
+.cont {
+    padding: 8%;
+    width: 100wv;
+    height: 85vh;
+    background-image: url(../assets_day1/img/cork.png);
+}
+
+.card {
+    position: relative;
+}
+
+.card-text {
+    font-family: "Edu TAS Beginner", cursive;
+    text-align: start;
+}
+
+.pin {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
