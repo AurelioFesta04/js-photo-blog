@@ -1,6 +1,10 @@
-const photosContainer = document.getElementById('photos');
-const bottoneChiusura = document.getElementById('button')
-const overlay = document.querySelector('.sopra-tutto')
+const $one = document.querySelector.bind(document);
+const $all = document.querySelectorAll.bind(document);
+
+const photosContainer = document.querySelector('#photos');
+const bottoneChiusura = document.querySelector('button');
+const overlay = document.querySelector('.sopra-tutto');
+const immagineAperta = document.querySelector('.img-aperta');
 
 function fetchPhotos() {
     axios.get("https://jsonplaceholder.typicode.com/photos?_limit=6")
@@ -16,13 +20,39 @@ function fetchPhotos() {
 
 function displayPhotos(photos) {
 
-    photos.forEach(photo => {
+    photos.forEach((photo, i) => {
         const card = document.createElement('div');
         card.classList.add('col');
 
         card.innerHTML = `
             <div class="card rounded-0 p-3">
-                <svg class="pin" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                ${iconSvg()}
+                <img src="${photo.url}" class="card-img-top" alt="${photo.title}" loading="lazy">
+                <div class="card-body p-0 pt-2">
+                    <p class="card-text">${photo.title}</p>
+                </div>
+            </div>
+        `;
+
+        photosContainer.appendChild(card);
+
+        card.querySelector('img').addEventListener('click', () => {
+            overlay.classList.remove('d-none');
+            immagineAperta.src = photo.url;
+            immagineAperta.alt = photo.title;
+        });
+
+        bottoneChiusura.addEventListener('click', function () {
+            overlay.classList.add('d-none');
+        });
+    });
+}
+
+fetchPhotos();
+
+function iconSvg() {
+
+    return `<svg class="pin" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_d_11_3)">
                         <circle cx="17" cy="16" r="16" fill="url(#paint0_linear_11_3)" />
                         <circle cx="17" cy="16" r="15" stroke="url(#paint1_linear_11_3)" stroke-width="2" />
@@ -51,24 +81,5 @@ function displayPhotos(photos) {
                             <stop offset="1" stop-color="#512312" />
                         </linearGradient>
                     </defs>
-                </svg>
-                <img src="${photo.url}" class="card-img-top" alt="${photo.title}" loading="lazy">
-                <div class="card-body p-0 pt-2">
-                    <p class="card-text">${photo.title}</p>
-                </div>
-            </div>
-        `;
-
-        card.querySelector('.card').addEventListener('click', function () {
-            overlay.classList.remove('d-none');
-        });
-
-        photosContainer.appendChild(card);
-    });
+                </svg>`;
 }
-
-fetchPhotos();
-
-bottoneChiusura.addEventListener('click', function () {
-    overlay.classList.add('d-none');
-});
