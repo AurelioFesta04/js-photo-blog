@@ -33,6 +33,13 @@ img {
 
 .card {
     position: relative;
+    cursor: pointer;
+    box-shadow: 0 5px 10px;
+}
+
+.card:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 15px 25px;
 }
 
 .card-text {
