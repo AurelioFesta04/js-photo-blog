@@ -46,3 +46,32 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.overlay {
+    position: relative;
+    justify-content: start;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(0, 0%, 0%, 50%);
+}
+
+button {
+    padding: 0.25rem;
+    width: 5rem;
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+
+.img-aperta {
+    width: 50%;
+}
+
+.sopra-tutto {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+}
