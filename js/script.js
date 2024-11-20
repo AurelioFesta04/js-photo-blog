@@ -1,4 +1,6 @@
 const photosContainer = document.getElementById('photos');
+const bottoneChiusura = document.getElementById('button')
+const overlay = document.querySelector('.sopra-tutto')
 
 function fetchPhotos() {
     axios.get("https://jsonplaceholder.typicode.com/photos?_limit=6")
@@ -8,7 +10,7 @@ function fetchPhotos() {
             displayPhotos(photos);
         }).catch(error => {
             console.error("Errore nel caricamento delle foto:", error);
-            photosContainer.innerHTML = "<p>Sorry, we couldn't load the photos at the moment.</p>";
+            photosContainer.innerHTML = "<p>Errore nel caricamento delle foto</p>";
         })
 }
 
@@ -56,9 +58,17 @@ function displayPhotos(photos) {
                 </div>
             </div>
         `;
-        
+
+        card.querySelector('.card').addEventListener('click', function () {
+            overlay.classList.remove('d-none');
+        });
+
         photosContainer.appendChild(card);
     });
 }
 
 fetchPhotos();
+
+bottoneChiusura.addEventListener('click', function () {
+    overlay.classList.add('d-none');
+});
